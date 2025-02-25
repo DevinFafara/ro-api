@@ -1,0 +1,20 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Lannion",
+			"country": {
+				"code": "FR",
+				"name": "France"
+			},
+			"subdivision": {
+				"code": "BRE",
+				"name": "Brittany"
+			},
+			"timezone": "Europe/Paris",
+			"latitude": 48.7313,
+			"longitude": -3.4621,
+			"postalCode": "22300"
+		},
+		"timestamp": 1740509660474
+	}
+}
