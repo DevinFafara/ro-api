@@ -1,16 +1,32 @@
 exports.handler = async (event) => {
+    if (event.httpMethod === "OPTIONS") {
+      return {
+        statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+        },
+        body: "",
+      };
+    }
+  
     const { password } = JSON.parse(event.body);
     const correctPassword = process.env.REACT_APP_PASSWORD;
   
-    if (password === correctPassword) {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ success: true, message: "Mot de passe valide !" }),
-      };
-    } else {
-      return {
-        statusCode: 401,
-        body: JSON.stringify({ success: false, message: "Mot de passe incorrect !" }),
-      };
-    }
+    return {
+      statusCode: password === correctPassword ? 200 : 401,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+      },
+      body: JSON.stringify({
+        success: password === correctPassword,
+        message: password === correctPassword
+          ? "Mot de passe valide !"
+          : "Mot de passe incorrect !",
+      }),
+    };
   };
+  
